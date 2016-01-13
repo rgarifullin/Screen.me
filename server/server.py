@@ -22,6 +22,10 @@ def upload():
         if f and allowed(f.filename):
             filename = secure_filename(f.filename)
             filename = str(uuid4())[:8] + '.' + f.filename.rsplit('.', 1)[1]
+
+            if not os.path.exists(app.config['UPLOAD_FOLDER']):
+                os.mkdir(app.config['UPLOAD_FOLDER'])
+
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             return app.config['HOST'] + url_for('get_uploaded',
