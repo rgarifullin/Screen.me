@@ -6,12 +6,8 @@ from uuid import uuid4
 from flask import Flask, request, url_for, send_from_directory
 from werkzeug import secure_filename
 
-UPLOAD_FOLDER = 'images'
-HOST = 'http://127.0.0.1:5000'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config.from_pyfile('config.py')
 
 
 @app.route('/')
@@ -28,7 +24,8 @@ def upload():
             filename = str(uuid4())[:8] + '.' + f.filename.rsplit('.', 1)[1]
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            return HOST + url_for('get_uploaded', filename=filename)
+            return app.config['HOST'] + url_for('get_uploaded',
+                                                filename=filename)
 
     else:
         return 'file uploading page'
@@ -40,7 +37,8 @@ def get_uploaded(filename):
 
 
 def allowed(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+    return ('.' in filename and
+            filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS'])
 
 if __name__ == '__main__':
     app.run()
