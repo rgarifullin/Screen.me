@@ -19,7 +19,6 @@ class Widget : public QWidget
 
     bool area;
 
-    QUrl url;
     QFile *image;
     QPoint origin;
     QString filename;
@@ -27,10 +26,11 @@ class Widget : public QWidget
     QScreen *screen;
     QPixmap originalPixmap;
     QRubberBand *rubberBand;
-    QNetworkReply *reply;
-    QNetworkAccessManager *manager;
     QClipboard *clipboard;
 
+    QUrl url;
+    QNetworkReply *reply;
+    QNetworkAccessManager *manager;
     QHttpPart *imagePart;
     QHttpMultiPart *multiPart;
 
