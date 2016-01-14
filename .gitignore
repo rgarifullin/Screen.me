@@ -1,2 +1,6 @@
 images/
 screens/
+
+*.autosave
+*.pro.user
+*.pro.user.*
