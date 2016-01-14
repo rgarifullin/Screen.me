@@ -21,7 +21,7 @@ def upload():
         f = request.files['image']
         if f and allowed(f.filename):
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
-                os.mkdir(app.config['UPLOAD_FOLDER'])
+                os.makedirs(app.config['UPLOAD_FOLDER'])
 
             extension = f.filename.rsplit('.', 1)[1]
             filename = get_shortname(extension)
