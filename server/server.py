@@ -20,11 +20,14 @@ def upload():
     if request.method == 'POST':
         f = request.files['image']
         if f and allowed(f.filename):
-            filename = secure_filename(f.filename)
-            filename = str(uuid4())[:8] + '.' + f.filename.rsplit('.', 1)[1]
-
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
                 os.mkdir(app.config['UPLOAD_FOLDER'])
+
+            extension = f.filename.rsplit('.', 1)[1]
+            filename = get_shortname(extension)
+            while os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'],
+                                 filename)):
+                filename = get_shortname(extension)
 
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
@@ -43,6 +46,10 @@ def get_uploaded(filename):
 def allowed(filename):
     return ('.' in filename and
             filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS'])
+
+
+def get_shortname(extension):
+    return str(uuid4())[:8] + '.' + extension
 
 if __name__ == '__main__':
     app.run()
