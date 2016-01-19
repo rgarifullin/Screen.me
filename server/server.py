@@ -4,7 +4,6 @@ import os
 from uuid import uuid4
 
 from flask import Flask, request, url_for, send_from_directory
-from werkzeug import secure_filename
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
