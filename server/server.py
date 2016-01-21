@@ -3,15 +3,15 @@
 import os
 from uuid import uuid4
 
-from flask import Flask, request, url_for, send_from_directory
+from flask import Flask, request, url_for, send_from_directory, render_template
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 
 
 @app.route('/')
-def hello_world():
-    return 'Welcome to Screen.me project!'
+def index():
+    return render_template('index.html')
 
 
 @app.route('/upload', methods=['GET', 'POST'])
