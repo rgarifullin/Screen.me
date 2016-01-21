@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}
+  <title>Screen.me - main page</title>
+{% endblock %}
+{% block content %}
+<section>
+  <h2>Project components</h2>
+  <article>
+    <h3>Server-side</h3>
+    <p>Server was written in python with <a href="http://flask.pocoo.org/">Flask</a> microframework.</p>
+    <h4>Configuration</h4>
+    <p>Server reads configuration values from <em>config.py</em> file, which can be edited manually. Syntax is very easy (usual python syntax), just assign your value to parameter:</p>
+    <p><em>UPLOAD_FOLDER</em> - path to folder, which will store your uploaded images.</p>
+    <p><em>HOST</em> - hostname of server.</p>
+    <p><em>ALLOWED_EXTENSIONS</em> - set of file extensions, which are allowed to be uploaded.</p>
+  </article>
+  <article>
+    <h3>Client</h3>
+    <p>Client was written in C++ with <a href="http://www.qt.io/">Qt5</a> framework.</p>
+    <h4>Configuration</h4>
+    <p>Configuration file - <em>config.json</em></p>
+    <p><em>url</em> - URL of server.</p>
+    <p><em>screens_folder</em> - path to folder, which will store your screenshots on your localhost.</p>
+  </article>
+</section>
+<section>
+  <h2>Manual</h2>
+  <article>
+    <h3>Client</h3>
+    <p>How to use? Just call program. In Linux:</p>
+    <code>$ ./client-qt5</code>
+    <p>In Windows:</p>
+    <code>> client-qt5.exe</code>
+    <p>If you want to take screenshot of part of your screen, you should call client with '-a' command line parameter.</p>
+    <p>The most convenient way is to create shortcut. Gnome 3: All Settings -> Keyboard -> Shortcuts. Then add 2 new custom shortcuts: one for screenshot of whole screen and other for screenshot of part of screen.</p>
+    <img src="static/images/shortcut_gnome3.png" alt="Shortcuts for Gnome 3" width="550" />
+    <p>After successful program execution direct link to uploaded image will be in your clipboard. Also, in linux you can receive pop-up notification (requires <em>notify-send</em>).</p>
+  </article>
+    <article>
+    <h3>Curl</h3>
+    <p>It's also possible to upload any image (.png, .jpg, .jpeg or .gif) via <em>curl</em>:</p>
+    <code>$ curl -F "image=@PATH_TO_IMAGE" HOSTNAME/upload</code>
+    <p>If successful you'll receive direct link to uploaded image. Example:</p>
+    <code>http://HOSTNAME/uploaded/f8d7ee72.png</code>
+  </article>
+</section>
+{% endblock %}

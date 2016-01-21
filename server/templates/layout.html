@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/application.css') }}">
+    {% block title %}
+      <title>Screen.me</title>
+    {% endblock %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <h1>Screen.me project</h1>
+      <p>Easy to deploy, to take screenshot and to upload it to web.</p>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer>
+      <p>&copy; Copyright 2016. <a href="https://github.com/rgarifullin/Screen.me">Project at github</a>.</p>
+    </footer>
+  </body>
+</html>
